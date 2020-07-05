@@ -1,0 +1,4 @@
+
+<app-todos-create [id]="listId" ></app-todos-create>
+
+<app-todos-card *ngFor="let todo of todos | async; trackBy: trackTodoObjects" [todo]="todo" [listId]="listId"></app-todos-card>

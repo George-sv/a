@@ -1,0 +1,72 @@
+<style>
+  .push-message{
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #767676;
+    color:cornsilk;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    opacity: 0;
+    transition: all 0.7s ease-in;
+  }
+  .push-message.visible{
+    opacity: 1;
+    transition: scale(3);
+  }
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">what to do</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+     
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <div class="form-inline">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown" (click)="toggleNotificationsWindow()" >
+          <i style='font-size:24px' class='fas'>&#xf0f3;</i>
+          </li>
+        </ul>
+        &nbsp;
+        &nbsp;
+
+        <button *ngIf="atAuth.authState | async"  type="button" class="btn btn-outline-danger" (click)="logut()" >Logout</button>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="alert alert-primary" role="alert" *ngIf="showPanel" >
+    <div *ngIf="!!(token | async); else activate">
+      Do you want to disable push notifications?
+      <button type="button" class="btn btn-dark" (click)="cancePermossopn()">deactivate</button>
+    </div>
+
+    <ng-template #activate>
+      Do you want to turn on push notifications?
+      <button type="button" class="btn btn-dark" (click)="requestPushPermissions()">Activate</button>
+
+    </ng-template>
+
+    
+  </div>
+  <br>
+  <div class="push-message" [ngClass]="{'visible': !!(pushS.notification | async)}">
+    {{ (pushS.notification | async )?.notification.title}}
+    <br>
+    {{ (pushS.notification | async )?.notification.body}}
+  </div>
+
+  <!-- {{pushS.notification | async | json }} -->

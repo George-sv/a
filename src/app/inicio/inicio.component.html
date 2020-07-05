@@ -1,0 +1,15 @@
+<br>
+
+<div class="container">
+    <div class="card" *ngFor="let list of listS.Lists | async " @enterState >
+        <a routerLink="/lists/{{list.id}}">
+           <div class="card-body">
+            <div class="row">
+                <div class="col-md-4"><p >{{list.title}}</p></div>
+                <div class="col-md-4 offset-md-4"><span class="badge badge-secondary">0</span></div>
+            </div>
+            </div> 
+        </a>   
+    </div>
+</div>
+<br>

@@ -1,0 +1,22 @@
+<button type="button" class="btn btn-primary btn-lg btn-block" (click)="toggleForm()" >{{label()}}</button>
+<br>
+<div class="container" style="overflow:hidden;" [@openClose]="formState">
+    <div class="form-group">
+        <label for="exampleInputEmail1">homework to do</label>
+        <input type="text" [(ngModel)]="todo.content" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea [(ngModel)]="todo.descripcion" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">fecha</label>
+        <input type="date" [(ngModel)]="todo.deadline" id="start" name="trip-start">
+      </div>
+      <div class="container">
+        <button type="button" class="btn btn-primary btn-sm" (click)="save()" >Save</button>
+    </div>
+    </div>
+

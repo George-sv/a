@@ -1,0 +1,43 @@
+<style>
+  .todo-card{
+    position: relative;
+  }
+  .todo-card::after{
+    position: absolute;
+    z-index: -1;
+    content: '\f00c';
+    font-family: FontAwesome;
+    top: 50%;
+    right: -2em;
+    font-weight: bold;
+    color: black;
+
+  }
+</style>
+
+<div class="container">
+    <br>
+    <div class="card todo-card"
+    (mousedown)="press = 'down'" 
+    (mouseup)="press = 'up'" 
+    (press)="press = 'down'" 
+    (pressUp)="press = 'up'" 
+    [@pressAnimation]="press"
+    [@statusAnimation]="todo.status"
+     (swipeLeft)="completed()">
+
+        <div class="card-header">
+          My tasks
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{todo.content}}</h5>
+          <p class="card-text" *ngIf="todo.descripcion" >{{todo.descripcion}}</p>
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          <p *ngIf="todo.deadline">
+            <i class="fas fa-clock" style="font-size:36px;"></i>
+            {{moment(todo.deadline).fromNow()}}
+          </p> 
+        </div>
+
+      </div>
+</div>
